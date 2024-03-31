@@ -2,6 +2,9 @@
 
 Welcome to the ultimate music experience with the MusicPlayer web app! 🚀
 
+![screenshot](https://github.com/CHEGEBB/MusicPlayer-Web-App/assets/123733116/6dd30107-ac17-48fd-9b62-83fa21802606)
+
+
 **Description:**
 Turn up the volume and dive into a world of endless melodies with our innovative MusicPlayer web app. Whether you're looking to groove to your favorite beats, discover new tunes, or simply chill out, we've got you covered!
 
