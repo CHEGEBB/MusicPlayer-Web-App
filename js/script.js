@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to fetch songs
     function fetchSongs() {
-        fetch('./music')
+        fetch('../music')
             .then(response => response.text())
             .then(data => {
                 const parser = new DOMParser();
