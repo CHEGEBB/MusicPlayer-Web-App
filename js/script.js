@@ -5,19 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     uploadButton.style.display = 'none';
     document.body.appendChild(uploadButton);
 
-    // const uploadLabel = document.createElement('label');
-    // uploadLabel.textContent = 'Choose Song from Computer';
-    // uploadLabel.htmlFor = 'upload';
-    // uploadLabel.style.cursor = 'pointer';
-    // uploadLabel.style.padding = '10px 20px';
-    // uploadLabel.style.display = 'none';
-    // uploadLabel.style.backgroundColor = '#4CAF50';
-    // uploadLabel.style.color = 'white';
-    // uploadLabel.style.borderRadius = '5px';
-    // uploadLabel.style.marginBottom = '20px';
-    // uploadLabel.style.display = 'inline-block';
-    // document.body.appendChild(uploadLabel);
-
     const audio = document.createElement('audio');
     document.body.appendChild(audio);
 
@@ -186,27 +173,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch songs and images
     fetchSongs();
     fetchSongImages();
-
-    // Upload functionality
-    uploadLabel.addEventListener('click', function() {
-        uploadButton.click();
-    });
-
-    uploadButton.addEventListener('change', function() {
-        const file = this.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const songTitle = prompt('Enter the song title:');
-                songs.push({
-                    title: songTitle || 'Unknown',
-                    file: event.target.result
-                });
-                loadSong(songs.length - 1);
-            }
-            reader.readAsDataURL(file);
-        }
-    });
 
     // Additional functionalities (to increase JavaScript lines)
     const shuffleButton = document.createElement('button');
