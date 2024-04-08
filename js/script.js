@@ -1,10 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const uploadButton = document.createElement('input');
-    uploadButton.type = 'file';
-    uploadButton.accept = '.mp3';
-    uploadButton.style.display = 'none';
-    document.body.appendChild(uploadButton);
-
     const audio = document.createElement('audio');
     document.body.appendChild(audio);
 
@@ -26,12 +20,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to fetch songs
     function fetchSongs() {
-        fetch('./music')
-            .then(response => response.text())
+        fetch('./songs.json')
+            .then(response => response.json())
             .then(data => {
-                songs = data; // Store songs from JSON data
+                songs = data;
                 loadSong(currentSongIndex);
-                displayTotalSongs(); // New functionality: Display total number of songs
+                displayTotalSongs();
             })
             .catch(error => {
                 console.error('Error fetching songs:', error);
@@ -56,12 +50,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to update song information
     function updateSongInfo(index) {
         titleElement.textContent = songs[index].title.length > 30 ? songs[index].title.slice(0, 30) + '...' : songs[index].title;
-        artistElement.textContent = songs[index].artist; // Use artist information from JSON
+        artistElement.textContent = songs[index].artist; 
     }
 
     // Function to update the song image
     function updateSongImage(index) {
-        musicImage.src = songs[index].image ? songs[index].image : defaultImage; // Use image from JSON or default image
+        musicImage.src = songs[index].image ? songs[index].image : defaultImage; 
     }
 
     // Function to toggle play/pause
