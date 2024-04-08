@@ -5,19 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     uploadButton.style.display = 'none';
     document.body.appendChild(uploadButton);
 
-    // const uploadLabel = document.createElement('label');
-    // uploadLabel.textContent = 'Choose Song from Computer';
-    // uploadLabel.htmlFor = 'upload';
-    // uploadLabel.style.cursor = 'pointer';
-    // uploadLabel.style.padding = '10px 20px';
-    // uploadLabel.style.display = 'none';
-    // uploadLabel.style.backgroundColor = '#4CAF50';
-    // uploadLabel.style.color = 'white';
-    // uploadLabel.style.borderRadius = '5px';
-    // uploadLabel.style.marginBottom = '20px';
-    // uploadLabel.style.display = 'inline-block';
-    // document.body.appendChild(uploadLabel);
-
     const audio = document.createElement('audio');
     document.body.appendChild(audio);
 
@@ -25,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentSongIndex = 0;
     let songs = [];
 
-    const songImages = [];
     const defaultImage = "./images/default-cover.png";
 
     const playButton = document.querySelector('.play');
@@ -40,20 +26,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to fetch songs
     function fetchSongs() {
-        fetch('./music')
-            .then(response => response.text())
+        fetch('./songs.json') // Assuming your JSON file is named songs.json
+            .then(response => response.json()) // Parse JSON response
             .then(data => {
-                const parser = new DOMParser();
-                const htmlDoc = parser.parseFromString(data, 'text/html');
-                const links = htmlDoc.querySelectorAll('a[href$=".mp3"]');
-
-                links.forEach(link => {
-                    songs.push({
-                        title: link.textContent,
-                        file: link.href
-                    });
-                });
-
+                songs = data; // Store songs from JSON data
                 loadSong(currentSongIndex);
                 displayTotalSongs(); // New functionality: Display total number of songs
             })
@@ -80,16 +56,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to update song information
     function updateSongInfo(index) {
         titleElement.textContent = songs[index].title.length > 30 ? songs[index].title.slice(0, 30) + '...' : songs[index].title;
-        artistElement.textContent = ''; // Replace with the actual artist information
+        artistElement.textContent = songs[index].artist; // Use artist information from JSON
     }
 
     // Function to update the song image
     function updateSongImage(index) {
-        if (index < songImages.length) {
-            musicImage.src = songImages[index]; // Set the source of the image from songImages array
-        } else {
-            musicImage.src = defaultImage; // Set the default image if no specific image is available
-        }
+        musicImage.src = songs[index].image ? songs[index].image : defaultImage; // Use image from JSON or default image
     }
 
     // Function to toggle play/pause
@@ -137,27 +109,10 @@ document.addEventListener('DOMContentLoaded', function() {
     nextButton.addEventListener('click', playNextSong);
     prevButton.addEventListener('click', playPrevSong);
 
-    // Function to fetch song images
-    function fetchSongImages() {
-        fetch('./music-image')
-            .then(response => response.text())
-            .then(data => {
-                const parser = new DOMParser();
-                const htmlDoc = parser.parseFromString(data, 'text/html');
-                const links = htmlDoc.querySelectorAll('a[href$=".png"]');
+    // Fetch songs
+    fetchSongs();
 
-                links.forEach(link => {
-                    songImages.push(link.href);
-                });
-
-                updateSongImage(currentSongIndex);
-            })
-            .catch(error => {
-                console.error('Error fetching song images:', error);
-            });
-    }
-
-    // Shuffle functionality
+// Shuffle functionality
     function shuffleSongs() {
         songs = shuffleArray(songs);
         currentSongIndex = 0; // Reset to the first song

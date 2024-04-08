@@ -1,0 +1,33 @@
+[
+    {
+      "title": "Easy On Me",
+      "artist": "Adele",
+      "album": "Adele's Album",
+      "file": "music/Adele - Easy On Me (Official Lyric Video)(MP3_320K).mp3"
+    },
+    {
+      "title": "On My Way",
+      "artist": "Alan Walker, Sabrina Carpenter, Farruko",
+      "album": "Some Album",
+      "file": "music/Alan Walker_ Sabrina Carpenter _ Farruko - On My Way(MP3_320K).mp3"
+    },
+    {
+      "title": "The Nights",
+      "artist": "Avicii",
+      "album": "Avicii's Album",
+      "file": "music/Avicii - The Nights (Lyrics)(MP3_320K).mp3"
+    },
+    {
+      "title": "Forest Lullaby",
+      "artist": "Unknown",
+      "album": "Unknown",
+      "file": "music/forest-lullaby-110624.mp3"
+    },
+    {
+      "title": "Lost in City Lights",
+      "artist": "Unknown",
+      "album": "Unknown",
+      "file": "music/lost-in-city-lights-145038.mp3"
+    }
+  ]
+  
