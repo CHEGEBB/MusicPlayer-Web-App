@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to fetch songs
     function fetchSongs() {
-        fetch('./songs.json') // Assuming your JSON file is named songs.json
-            .then(response => response.json()) // Parse JSON response
+        fetch('./music')
+            .then(response => response.text())
             .then(data => {
                 songs = data; // Store songs from JSON data
                 loadSong(currentSongIndex);
@@ -141,27 +141,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch songs and images
     fetchSongs();
     fetchSongImages();
-
-    // Upload functionality
-    uploadLabel.addEventListener('click', function() {
-        uploadButton.click();
-    });
-
-    uploadButton.addEventListener('change', function() {
-        const file = this.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const songTitle = prompt('Enter the song title:');
-                songs.push({
-                    title: songTitle || 'Unknown',
-                    file: event.target.result
-                });
-                loadSong(songs.length - 1);
-            }
-            reader.readAsDataURL(file);
-        }
-    });
 
     // Additional functionalities (to increase JavaScript lines)
     const shuffleButton = document.createElement('button');
